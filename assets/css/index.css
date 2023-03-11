@@ -23,6 +23,7 @@
     --fontSize-6: 1.6rem;
     --fontSize-7: 1.4rem;
     --fontSize-8: 1.2rem;
+    --fontSize-9: 1.1rem;
 
     /** font weight */
     --weight-regular: 300;
@@ -38,11 +39,13 @@
     --bg-left-bottom: #485b83;/* rgba(72,91,131,255); */
     --bg-right:#f5ebe1;
     --bg-subtitle: #d70666;
+    --bg-subtitle-slowly:#f3b4d1;
     
 
     /** text color */
     --text-white: #f1ece0;
     --text-black: #1c2124;
+    --text-grey: #746F6C;
 
     /**
     * BORDER RADIUS
@@ -50,6 +53,11 @@
     --radius-50-percent: 50%;
     /* --radius-40: 40px;
     --radius-pill: 500px; */
+
+    /**
+     * Skill
+     */
+    --skills-bar-length:0%;
 }
 
 /**
@@ -75,7 +83,8 @@ html{
  */
 body {
     background-color: #648478;
-    max-width: 210mm;
+    max-width: 794px;
+    max-height: 1123px;
     margin-inline: auto;
 }
 
@@ -96,9 +105,9 @@ article{
     position: relative;
     background: linear-gradient(to bottom, var(--bg-left-top) , var(--bg-left-bottom));
     color: var(--text-white);
-    margin-block-start: 5rem;
+    /* margin-block-start: 5rem; */
     width: 100%;
-    height: 961px;
+    max-height: 1123px;
     padding-block: 25px;
     padding-inline: 25px;
     z-index: 1;
@@ -140,6 +149,7 @@ article{
 
 .left .container .perfil img{
     border-radius: var(--radius-50-percent);
+    background-color: var(--bg-right);
 }
 
 .left .container .perfil h2{
@@ -147,15 +157,21 @@ article{
     margin-block-start: 20px;
 }
 
+.left .container .perfil .perfil-career{
+    font-size: var(--fontSize-8);
+    font-weight: var(--weight-regular);
+}
+
 .left .container .contact-information{
-    padding-inline: 16px;
-    margin-block-end: 4em;
+    padding-inline: 5px;
+    margin-block-end: 3em;
 }
 
 .left .container .contact{
     display: flex;
     align-items: center;
-    margin-block: 10px;
+    margin-block: 7px;
+    font-size: var(--fontSize-8);
 }
 
 .left .container .contact ion-icon{
@@ -175,7 +191,6 @@ article{
 .left .container .contact a:is(:hover, :focus-visible){
     text-decoration: underline;
 }
-
 
 .left .container .info-subtitle{
     position: relative;
@@ -228,18 +243,90 @@ article{
     font-size: var(--fontSize-4);
 }
 
+.left .container .skills .content {
+    margin-block: 2rem;
+    font-size: var(--fontSize-8);
+    background-color: transparent;
+}
+
+.left .container .skills .content .skill{
+    margin-block: 1rem;
+}
+
+.left .container .skills .content .skill h4{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.left .container .skills .content .skill-bar,
+.left .container .skills .content .skill-bar::after{
+    position: relative;
+    width: 265px;
+    height: 10px;
+    background-color: var(--bg-subtitle-slowly);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.left .container .skills .content .skill-bar::after{
+    content: '';
+    position: absolute;
+    left: -265px;
+    background-color: var(--bg-subtitle);
+    transition: .5ms ease;
+    animation: skill-bar-fill 2s ease-in-out forwards;
+}
+.left .container .skills .content .skill-bar-1::after{
+    --skills-bar-length: 100%;
+}
+
+.left .container .skills .content .skill-bar-2::after{
+    --skills-bar-length: 80%;
+}
+
+.left .container .skills .content .skill-bar-3::after{
+    --skills-bar-length: 80%;
+}
+
+.left .container .skills .content .skill-bar-4::after{
+    --skills-bar-length: 80%;
+}
+
+.left .container .skills .content .skill-bar-5::after{
+    --skills-bar-length: 50%;
+}
+
+.left .container .skills .content .skill-bar-6::after{
+    --skills-bar-length: 50%;
+}
+
+@keyframes skill-bar-fill{
+    to{
+        transform: translate(var(--skills-bar-length));
+    }
+}
+
+.left .container .skills .content-soft-skills{
+    margin-inline-start: 8px;
+}
+
+.left .container .skills .content-soft-skills ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:0 15px;
+    font-weight: var(--weight-regular);
+}
+
 .left .container .language-information .info-text{
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin-block: 10px;
-}
-
-.left .container .softSkills-information h3{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin-block-start: 10px;
+    font-size: var(--fontSize-7);
+    font-weight: var(--weight-regular);
+    
 }
 
 /**
@@ -248,13 +335,11 @@ article{
 
 .right .container{
     width: 100%;
-    height: 961px;
+    height: 1123px;
     border: none;
     padding-inline: 25px;
     background-color: var(--bg-right);
 }
-
-
 
 .right .container .list-info{
     position: relative;
@@ -303,10 +388,15 @@ article{
     font-size: 2em;
 }
 
+.right .container .profile-information {
+    padding-block-start: .5em;    
+}
+
 .right .container .profile-information p {
     text-align: justify; /* alinea el texto a ambos lados */
-    line-height: 1.5; /* establece la altura de línea del texto */
-    margin-block: 1.5em; /* agrega un margen inferior de 1.5em */
+    line-height: 1.2; /* establece la altura de línea del texto */
+    margin-block: 1em; /* agrega un margen inferior de 1.5em */
+    font-size: var(--fontSize-9);
     font-weight: var(--weight-regular);
 }
 
@@ -318,5 +408,130 @@ article{
     color:#f1ece0;
 }
 
+.right .container .education .content .title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block-start: 1em;
+    font-size: var(--fontSize-9);
+}
+
+.right .container .education .content .list{
+    margin-block: 1em;
+    text-align: justify; 
+    line-height: 1.5;
+    margin-inline-start: 1.5em;
+    font-weight: var(--weight-regular);
+    font-size: var(--fontSize-9);
+}
+
+.right .container .education .content .list-project{
+    margin-inline-start: 10px;
+}
+
+.right .container .education .content .list-project ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+}
+
+.right .container .education .content .title h3{
+    margin-inline: 1px;
+}
+
+.right .container .education .content .title h3:last-of-type {
+    color: var(--bg-subtitle);
+}
+
+.right .container .education .content h4{
+    color: var(--text-grey); 
+    font-size: var(--fontSize-9);
+}
 
 
+.right .container .work-experience .content .title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block-start: 1em;
+    font-size: var(--fontSize-9);
+}
+
+.right .container .work-experience .content .list{
+    margin-block: 1.5em;
+    text-align: justify; 
+    line-height: 1.5;
+    margin-inline-start: 1.5em;
+    font-weight: var(--weight-regular);
+    font-size: var(--fontSize-9);
+}
+
+.right .container .work-experience .content .title h3{
+    margin-inline: 1px;    
+}
+
+.right .container .work-experience .content .title h3:last-of-type {
+    color: var(--bg-subtitle);
+}
+
+.right .container .work-experience .content h4{
+    color: var(--text-grey);
+    font-size: var(--fontSize-9);
+
+}
+
+.right .container .certificate {
+    margin-block-end: 1.5em;
+}
+
+.right .container .certificate .list-info{
+    margin-block-end: 1.5em;
+}
+
+.right .container .certificate .content .title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-block: .5em;
+    font-size: var(--fontSize-9);
+}
+
+.right .container .certificate .content .title h3{
+    margin-inline: 1px;
+}
+
+.right .container .certificate .content .title h3:last-of-type {
+    color: var(--bg-subtitle);
+}
+
+
+.right .container .activities .list-info{
+    margin-block-end: 1.2em;
+}
+
+.right .container .activities .content-activity{
+    margin-block: .5em;
+}
+
+.right .container .activities .content-activity ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 60px;
+    margin-inline-start: 1em;
+    font-weight: var(--weight-regular);
+}
+
+/**
+ * corrections
+ */
+
+ .right .container .profile-information .icon-list{
+    margin-inline-start: 7px;
+ }
+ .right .container .certificate .icon-list{
+    margin-inline-start: 8px;
+ }
+
+ .right .container .activities .icon-list{
+    margin-inline-start: 8px;
+ }
